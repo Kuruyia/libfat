@@ -15,3 +15,5 @@ nds/include
 /wiiu/release
 /wiiu/lib
 gp2x/include
+.DS_Store
+build/

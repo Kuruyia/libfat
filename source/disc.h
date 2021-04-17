@@ -46,7 +46,7 @@ Check if a disc is inserted
 Return true if a disc is inserted and ready, false otherwise
 */
 static inline bool _FAT_disc_isInserted (const DISC_INTERFACE* disc) {
-	return disc->isInserted();
+	return disc->isInserted(disc->data);
 }
 
 /*
@@ -57,7 +57,7 @@ sector is 0 or greater
 buffer is a pointer to the memory to fill
 */
 static inline bool _FAT_disc_readSectors (const DISC_INTERFACE* disc, sec_t sector, sec_t numSectors, void* buffer) {
-	return disc->readSectors (sector, numSectors, buffer);
+	return disc->readSectors (disc->data, sector, numSectors, buffer);
 }
 
 /*
@@ -68,21 +68,21 @@ sector is 0 or greater
 buffer is a pointer to the memory to read from
 */
 static inline bool _FAT_disc_writeSectors (const DISC_INTERFACE* disc, sec_t sector, sec_t numSectors, const void* buffer) {
-	return disc->writeSectors (sector, numSectors, buffer);
+	return disc->writeSectors (disc->data, sector, numSectors, buffer);
 }
 
 /*
 Reset the card back to a ready state
 */
 static inline bool _FAT_disc_clearStatus (const DISC_INTERFACE* disc) {
-	return disc->clearStatus();
+	return disc->clearStatus(disc->data);
 }
 
 /*
 Initialise the disc to a state ready for data reading or writing
 */
 static inline bool _FAT_disc_startup (const DISC_INTERFACE* disc) {
-	return disc->startup();
+	return disc->startup(disc->data);
 }
 
 /*
@@ -90,7 +90,7 @@ Put the disc in a state ready for power down.
 Complete any pending writes and disable the disc if necessary
 */
 static inline bool _FAT_disc_shutdown (const DISC_INTERFACE* disc) {
-	return disc->shutdown();
+	return disc->shutdown(disc->data);
 }
 
 /*

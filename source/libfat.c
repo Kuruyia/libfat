@@ -78,10 +78,10 @@ bool fatMount (const char* name, const DISC_INTERFACE* interface, sec_t startSec
 	if(!name || strlen(name) > 8 || !interface)
 		return false;
 
-	if(!interface->startup())
+	if(!interface->startup(interface->data))
 		return false;
 
-	if(!interface->isInserted())
+	if(!interface->isInserted(interface->data))
 		return false;
 
 	char devname[10];
